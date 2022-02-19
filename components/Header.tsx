@@ -7,16 +7,26 @@ const Header = styled("header", {
   padding: "32px 35px",
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between",
+  justifyContent: "center",
 
   "@bp1": {
     padding: "56px 68px",
   },
   "@bp2": {
     padding: "56px 40px",
+    justifyContent: "space-between",
   },
   "@bp3": {
     padding: "56px 140px",
+    justifyContent: "space-between",
+  },
+});
+
+const EndingContainer = styled("div", {
+  display: "none",
+
+  "@bp2": {
+    display: "block",
   },
 });
 
@@ -25,9 +35,9 @@ const HeaderComponent = () => {
     <Header>
       <Image src={logo} alt="Blergs Logo" width={277} />
 
-      <div>
+      <EndingContainer>
         <Button>Connect Wallet</Button>
-      </div>
+      </EndingContainer>
     </Header>
   );
 };
