@@ -1,14 +1,18 @@
 import { styled } from "../theme/stitches.config";
 
 const ExternalLink = styled("a", {
-  backgroundColor: "$yellow",
-  color: "$black",
-  borderRadius: "9999px",
+  backgroundColor: "$yellow100",
+  color: "$red",
   fontSize: "20px",
+  fontWeight: 400,
   lineHeight: "28px",
-  padding: "10px 20px",
-  border: "8px solid $black",
+  padding: "10px 40px",
   cursor: "pointer",
+  borderRadius: 50,
+  textTransform: "uppercase",
+  display: "inline-block",
+  minWidth: "242px",
+  textAlign: "center",
 });
 
 export default ExternalLink;

@@ -8,7 +8,7 @@ export interface BlergRarity {
   rank: number;
 }
 
-interface Trait {
+export interface Trait {
   trait_type: string;
   value: string;
   display_type: null | string;

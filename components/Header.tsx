@@ -3,6 +3,7 @@ import Button from "./Button";
 import logo from "../public/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Header = styled("header", {
   padding: "32px 35px",
@@ -21,6 +22,17 @@ const Header = styled("header", {
     padding: "56px 140px",
     justifyContent: "space-between",
   },
+
+  variants: {
+    page: {
+      detailsPage: {
+        position: "fixed",
+        top: 0,
+        width: "100%",
+        zIndex: 1,
+      },
+    },
+  },
 });
 
 const EndingContainer = styled("div", {
@@ -32,8 +44,11 @@ const EndingContainer = styled("div", {
 });
 
 const HeaderComponent = () => {
+  const router = useRouter();
+  const isHome = router.pathname === "/";
+
   return (
-    <Header>
+    <Header page={isHome ? undefined : "detailsPage"}>
       <Link href="/" passHref>
         <a>
           <Image src={logo} alt="Blergs Logo" width={277} />
