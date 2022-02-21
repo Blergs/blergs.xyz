@@ -166,11 +166,12 @@ const Table = styled("table", {
   },
   "tr > td:nth-child(3)": {
     textAlign: "right",
-    paddingRight: 8,
   },
   "tr > td:nth-child(4)": {
     color: "$gray400",
     fontWeight: 500,
+    textAlign: "right",
+    width: "5ch",
   },
 });
 
