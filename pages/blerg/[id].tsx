@@ -1,6 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import Button from "../../components/Button";
 import ExternalLink from "../../components/ExternalLink";
 import { getBlergById } from "../../providers/blerg";
 import { styled } from "../../theme/stitches.config";
@@ -20,6 +21,7 @@ const BlergDetailPage: NextPage = () => {
         <StartColumn>
           <BlergImageContainer>
             <BlergImage src={blerg?.imageUrl}></BlergImage>
+            <DownloadAssetButton>Download Asset</DownloadAssetButton>
           </BlergImageContainer>
         </StartColumn>
         <EndColumn>
@@ -146,7 +148,9 @@ const BlergImageContainer = styled("div", {
   borderRadius: 12,
   marginTop: "5vh",
   position: "absolute",
-  overflow: "hidden",
+  //   overflow: "hidden",
+  display: "flex",
+  justifyContent: "center",
 
   "@bp1": {
     height: 500,
@@ -161,7 +165,17 @@ const BlergImageContainer = styled("div", {
 const BlergImage = styled("img", {
   height: "100%",
   width: "100%",
+});
+
+const DownloadAssetButton = styled(Button, {
   position: "absolute",
+  bottom: "8px",
+  textTransform: "uppercase",
+  padding: "24px 20px",
+
+  "@bp2": {
+    bottom: "calc(-40px - 92px)",
+  },
 });
 
 const TitleSection = styled("section", {
