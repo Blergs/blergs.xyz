@@ -11,8 +11,12 @@ const ExternalLink = styled("a", {
   borderRadius: 50,
   textTransform: "uppercase",
   display: "inline-block",
-  minWidth: "242px",
+  minWidth: "100px",
   textAlign: "center",
+
+  "@bp2": {
+    minWidth: "242px",
+  },
 });
 
 export default ExternalLink;

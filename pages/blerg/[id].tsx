@@ -71,46 +71,97 @@ const BlergDetailPage: NextPage = () => {
 export default BlergDetailPage;
 
 const Main = styled("main", {
-  display: "grid",
-  gridTemplateColumns: "1fr 2fr",
-  "> *": {
-    paddingTop: "205px",
-    height: "100vh",
+  display: "flex",
+  flexDirection: "column",
+
+  "> *:first-child": {
+    paddingTop: "120px",
+    height: "50vh",
+  },
+
+  "> *:nth-child(2)": {
+    paddingTop: "80px",
+  },
+
+  "@bp1": {
+    display: "flex",
+    flexDirection: "column",
+    "> *:first-child": {
+      paddingTop: "180px",
+      height: "80vh",
+    },
+    "> *:nth-child(2)": {
+      paddingTop: "140px",
+    },
+  },
+
+  "@bp2": {
+    display: "grid",
+    gridTemplateColumns: "1fr 2fr",
+    "> *:first-child": {
+      paddingTop: "205px",
+      height: "100vh",
+    },
+    "> *:nth-child(2)": {
+      paddingTop: "140px",
+    },
   },
 });
 
 const StartColumn = styled("div", {
   backgroundColor: "$red",
   position: "relative",
+  display: "flex",
+  justifyContent: "center",
+
+  "@bp2": {
+    display: "initial",
+  },
 });
 
 const EndColumn = styled("div", {
-  marginLeft: "120px",
-  paddingRight: "120px",
+  padding: "40px 8px",
   "> section": {
-    width: 600,
-    margin: "0 auto",
+    width: "100%",
+  },
+
+  "@bp1": {
+    padding: "120px 32px",
+  },
+  "@bp2": {
+    padding: 0,
+    marginLeft: "120px",
+    paddingRight: "120px",
+    "> section": {
+      width: 600,
+      margin: "0 auto",
+    },
   },
 });
 
 const BlergImageContainer = styled("div", {
-  height: 500,
-  width: 500,
+  height: 300,
+  width: 300,
   border: "8px solid $black",
   borderRadius: 12,
   marginTop: "5vh",
-  right: -76,
   position: "absolute",
   overflow: "hidden",
+
+  "@bp1": {
+    height: 500,
+    width: 500,
+    marginTop: "5vh",
+  },
+  "@bp2": {
+    right: -76,
+  },
 });
 
 const BlergImage = styled("img", {
-  height: 500,
-  width: 500,
-  borderRadius: 12,
+  height: "100%",
+  width: "100%",
   position: "absolute",
-  left: -8,
-  top: -8,
 });
 
 const TitleSection = styled("section", {
