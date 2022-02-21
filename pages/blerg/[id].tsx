@@ -19,10 +19,12 @@ const BlergDetailPage: NextPage = () => {
       </Head>
       <Main>
         <StartColumn>
-          <BlergImageContainer>
-            <BlergImage src={blerg?.imageUrl}></BlergImage>
+          <StartColumnContentContainer>
+            <BlergImageContainer>
+              <BlergImage src={blerg?.imageUrl}></BlergImage>
+            </BlergImageContainer>
             <DownloadAssetButton>Download Asset</DownloadAssetButton>
-          </BlergImageContainer>
+          </StartColumnContentContainer>
         </StartColumn>
         <EndColumn>
           <TitleSection>
@@ -141,14 +143,9 @@ const EndColumn = styled("div", {
   },
 });
 
-const BlergImageContainer = styled("div", {
-  height: 300,
-  width: 300,
-  border: "8px solid $black",
-  borderRadius: 12,
+const StartColumnContentContainer = styled("div", {
   marginTop: "5vh",
   position: "absolute",
-  //   overflow: "hidden",
   display: "flex",
   justifyContent: "center",
 
@@ -159,6 +156,19 @@ const BlergImageContainer = styled("div", {
   },
   "@bp2": {
     right: -76,
+  },
+});
+
+const BlergImageContainer = styled("div", {
+  height: 300,
+  width: 300,
+  border: "8px solid $black",
+  borderRadius: 12,
+  overflow: "hidden",
+
+  "@bp1": {
+    height: 500,
+    width: 500,
   },
 });
 
