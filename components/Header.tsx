@@ -26,10 +26,13 @@ const Header = styled("header", {
   variants: {
     page: {
       detailsPage: {
-        position: "fixed",
-        top: 0,
-        width: "100%",
         zIndex: 1,
+
+        "@bp2": {
+          position: "fixed",
+          top: 0,
+          width: "100%",
+        },
       },
     },
   },

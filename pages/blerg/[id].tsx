@@ -75,8 +75,8 @@ const Main = styled("main", {
   flexDirection: "column",
 
   "> *:first-child": {
-    paddingTop: "120px",
-    height: "50vh",
+    paddingTop: "0px",
+    height: "35vh",
   },
 
   "> *:nth-child(2)": {
@@ -87,8 +87,8 @@ const Main = styled("main", {
     display: "flex",
     flexDirection: "column",
     "> *:first-child": {
-      paddingTop: "180px",
-      height: "80vh",
+      paddingTop: "40px",
+      height: "60vh",
     },
     "> *:nth-child(2)": {
       paddingTop: "140px",
