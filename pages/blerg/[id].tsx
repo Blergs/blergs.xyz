@@ -10,10 +10,6 @@ const BlergDetailPage: NextPage = () => {
   const { id } = router.query;
   const blerg = getBlergById(id as string);
 
-  if (blerg === undefined) {
-    router.push("/");
-  }
-
   return (
     <div>
       <Head>
