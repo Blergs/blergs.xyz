@@ -1,0 +1,1 @@
+images located in this directory. All assets uploaded at 2400x2400px and compressed using tiny.png
