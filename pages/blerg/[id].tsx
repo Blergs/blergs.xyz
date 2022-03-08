@@ -6,6 +6,7 @@ import ExternalLink from "../../components/ExternalLink";
 import { getBlergById } from "../../providers/blerg";
 import { styled } from "../../theme/stitches.config";
 import { Trait } from "../../types";
+import Image from "next/image";
 
 const BlergDetailPage: NextPage = () => {
   const router = useRouter();
@@ -21,7 +22,13 @@ const BlergDetailPage: NextPage = () => {
         <StartColumn>
           <StartColumnContentContainer>
             <BlergImageContainer>
-              <BlergImage src={blerg?.imageUrl}></BlergImage>
+              <BlergImage
+                src={`/blerg_full_resolution/${blerg?.tokenId || id}@2x.png`}
+                alt=""
+                width={500}
+                height={500}
+                priority
+              ></BlergImage>
             </BlergImageContainer>
             <DownloadAssetButton>Download Asset</DownloadAssetButton>
           </StartColumnContentContainer>
@@ -172,7 +179,7 @@ const BlergImageContainer = styled("div", {
   },
 });
 
-const BlergImage = styled("img", {
+const BlergImage = styled(Image, {
   height: "100%",
   width: "100%",
 });

@@ -14,16 +14,21 @@ const BlergPreview = ({ blerg }: Props) => {
         <h2>#{blerg.tokenId}</h2>
         <p>Rank {blerg.rank}</p>
       </TextContainer>
-      {/* <Image src={blerg.imageUrl} alt="" layout="fill" /> */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <BlergImage src={blerg.imageUrl} alt="" />
+      <BlergImage
+        src={`/blerg_full_resolution/${blerg.tokenId}@2x.png`}
+        alt=""
+        width={425}
+        height={425}
+        // Prioritize loading the first 10 since these will probably be above the fold.
+        priority={parseInt(blerg.tokenId, 10) < 10}
+      />
     </Container>
   );
 };
 
 export default BlergPreview;
 
-const BlergImage = styled("img", {
+const BlergImage = styled(Image, {
   width: "100%",
   height: "100%",
   zIndex: 1,
