@@ -30,7 +30,13 @@ const BlergDetailPage: NextPage = () => {
                 priority
               ></BlergImage>
             </BlergImageContainer>
-            <DownloadAssetButton>Download Asset</DownloadAssetButton>
+            <DownloadAssetButton
+              as="a"
+              download
+              href={`/blerg_full_resolution/${blerg?.tokenId || id}@2x.png`}
+            >
+              Download Asset
+            </DownloadAssetButton>
           </StartColumnContentContainer>
         </StartColumn>
         <EndColumn>
