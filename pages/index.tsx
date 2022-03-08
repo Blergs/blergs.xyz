@@ -17,7 +17,7 @@ const Home: NextPage = () => {
       </Head>
       <main className={styles.main}>
         <Grid>
-          {RARITIES_DATA.slice(0, 10).map((blerg) => (
+          {RARITIES_DATA.map((blerg) => (
             <Link key={blerg.tokenId} href={`/blerg/${blerg.tokenId}`} passHref>
               <BlergLink>
                 <BlergPreview blerg={blerg} />
