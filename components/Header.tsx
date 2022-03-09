@@ -4,6 +4,8 @@ import logo from "../public/logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useWallet } from "@web3-ui/core";
+import { getShortEthAddress } from "../utils/eth";
 
 const Header = styled("header", {
   padding: "32px 35px",
@@ -49,6 +51,8 @@ const EndingContainer = styled("div", {
 const HeaderComponent = () => {
   const router = useRouter();
   const isHome = router.pathname === "/";
+  const { connection, connectWallet, disconnectWallet, connected } =
+    useWallet();
 
   return (
     <Header page={isHome ? undefined : "detailsPage"}>
@@ -59,7 +63,24 @@ const HeaderComponent = () => {
       </Link>
 
       <EndingContainer>
-        <Button>Connect Wallet</Button>
+        <Button
+          onClick={() => {
+            if (!connected) {
+              if (connectWallet) {
+                connectWallet();
+              }
+            } else {
+              if (disconnectWallet) {
+                disconnectWallet();
+              }
+            }
+          }}
+        >
+          {!connected
+            ? "Connect Wallet"
+            : connection.ens ||
+              getShortEthAddress(connection.userAddress as string)}
+        </Button>
       </EndingContainer>
     </Header>
   );

@@ -7,11 +7,28 @@ import { getBlergById } from "../../providers/blerg";
 import { styled } from "../../theme/stitches.config";
 import { Trait } from "../../types";
 import Image from "next/image";
+import { useNft } from "use-nft";
+import { useWallet } from "@web3-ui/core";
+import { useEffect } from "react";
 
 const BlergDetailPage: NextPage = () => {
   const router = useRouter();
   const { id } = router.query;
   const blerg = getBlergById(id as string);
+  const { nft, reload } = useNft(
+    "0xcf0951ab291c5aeea59fa99f088a0baaa78b47db",
+    id?.toString() || ""
+  );
+  const { connection } = useWallet();
+
+  useEffect(() => {
+    if (id !== undefined) {
+      reload();
+    }
+  }, [id, reload]);
+
+  const isOwner =
+    !nft || !connection ? false : nft?.owner === connection?.userAddress;
 
   return (
     <div>
@@ -30,13 +47,15 @@ const BlergDetailPage: NextPage = () => {
                 priority
               ></BlergImage>
             </BlergImageContainer>
-            <DownloadAssetButton
-              as="a"
-              download
-              href={`/blerg_full_resolution/${blerg?.tokenId || id}@2x.png`}
-            >
-              Download Asset
-            </DownloadAssetButton>
+            {isOwner && (
+              <DownloadAssetButton
+                as="a"
+                download
+                href={`/blerg_full_resolution/${blerg?.tokenId || id}@2x.png`}
+              >
+                Download Asset
+              </DownloadAssetButton>
+            )}
           </StartColumnContentContainer>
         </StartColumn>
         <EndColumn>
@@ -208,7 +227,6 @@ const TitleSection = styled("section", {
   h2: {
     fontSize: "40px",
     margin: 0,
-    marginBottom: "8px",
   },
   p: {
     fontSize: "16px",
@@ -230,6 +248,7 @@ const ActionsSection = styled("section", {
 const SubTitle = styled("h3", {
   fontWeight: 500,
   fontSize: "16px",
+  fontFamily: "$body",
   lineHeight: "24px",
   margin: 0,
 });
