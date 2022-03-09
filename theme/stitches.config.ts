@@ -20,6 +20,12 @@ export const {
       gray400: "#9CA3AF",
       slate400: "#94A3B8",
     },
+    fonts: {
+      header: `"Rotundo", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+      Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif`,
+      body: `"Inter", -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+      Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif`,
+    },
   },
   media: {
     bp1: "(min-width: 414px)",

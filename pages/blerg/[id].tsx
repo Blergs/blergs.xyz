@@ -195,6 +195,7 @@ const DownloadAssetButton = styled(Button, {
   bottom: "8px",
   textTransform: "uppercase",
   padding: "24px 20px",
+  fontFamily: "$header",
 
   "@bp2": {
     bottom: "calc(-40px - 92px)",

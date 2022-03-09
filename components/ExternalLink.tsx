@@ -2,6 +2,7 @@ import { styled } from "../theme/stitches.config";
 
 const ExternalLink = styled("a", {
   backgroundColor: "$yellow100",
+  fontFamily: "$header",
   color: "$red",
   fontSize: "20px",
   fontWeight: 400,

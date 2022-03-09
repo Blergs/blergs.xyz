@@ -9,6 +9,7 @@ const Button = styled("button", {
   padding: "10px 20px",
   border: "8px solid $black",
   cursor: "pointer",
+  fontFamily: "$header",
 });
 
 export default Button;
