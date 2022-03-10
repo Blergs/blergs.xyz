@@ -45,13 +45,19 @@ const TextContainer = styled("div", {
   justifyContent: "center",
   alignItems: "center",
   transform: "translateY(-24px)",
-  transition: "transform 0.2s ease-in",
+  opacity: 0,
+  transition: "opacity 0.2s ease-in, transform 0.2s ease-in",
   h2: {
     margin: 0,
-    marginBottom: 8,
+    marginBottom: "8px",
+    fontSize: "32px",
+    lineHeight: "24px",
   },
   p: {
     margin: 0,
+    fontSize: "16px",
+    fontWeight: 500,
+    lineHeight: "28px",
   },
 });
 
@@ -62,7 +68,8 @@ const Container = styled("div", {
       transform: "translateY(60px) scale(0.8)",
     },
     [`${TextContainer}`]: {
-      transform: "translateY(20px)",
+      transform: "translateY(10px)",
+      opacity: 1,
     },
   },
 });
