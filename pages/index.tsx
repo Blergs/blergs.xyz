@@ -34,4 +34,5 @@ export default Home;
 
 const BlergLink = styled("a", {
   overflow: "hidden",
+  aspectRatio: "1/1",
 });
