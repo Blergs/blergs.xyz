@@ -225,13 +225,22 @@ const TitleSection = styled("section", {
   textAlign: "center",
 
   h2: {
-    fontSize: "40px",
+    fontSize: "30px",
     margin: 0,
   },
   p: {
-    fontSize: "16px",
+    fontSize: "12px",
     fontWeight: 500,
     margin: 0,
+  },
+
+  "@bp2": {
+    h2: {
+      fontSize: "40px",
+    },
+    p: {
+      fontSize: "16px",
+    },
   },
 });
 
@@ -247,10 +256,14 @@ const ActionsSection = styled("section", {
 
 const SubTitle = styled("h3", {
   fontWeight: 500,
-  fontSize: "16px",
+  fontSize: "12px",
   fontFamily: "$body",
   lineHeight: "24px",
   margin: 0,
+
+  "@bp2": {
+    fontSize: "16px",
+  },
 });
 
 const TableHeader = styled("thead", {
@@ -259,9 +272,13 @@ const TableHeader = styled("thead", {
 
 const Table = styled("table", {
   width: "100%",
-  fontSize: "24px",
+  fontSize: "18px",
   lineHeight: "32px",
   fontWeight: 500,
+
+  "@bp2": {
+    fontSize: "24px",
+  },
 
   "tr > td:first-child": {
     color: "$gray400",
