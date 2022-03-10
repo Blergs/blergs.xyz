@@ -211,13 +211,14 @@ const BlergImage = styled(Image, {
 
 const DownloadAssetButton = styled(Button, {
   position: "absolute",
-  bottom: "8px",
+  bottom: "-95px",
   textTransform: "uppercase",
-  padding: "24px 20px",
+  padding: "20px 20px",
   fontFamily: "$header",
+  borderWidth: "4px",
 
   "@bp2": {
-    bottom: "calc(-40px - 92px)",
+    bottom: "calc(-40px - 72px)",
   },
 });
 
