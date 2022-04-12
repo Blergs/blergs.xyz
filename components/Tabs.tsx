@@ -73,19 +73,22 @@ interface TabsProps {
   tabs: Tab[];
   defaultTabId: string;
   title: string;
+  showTabs: boolean;
 }
 
-const Tabs = ({ tabs = [], defaultTabId, title }: TabsProps) => (
+const Tabs = ({ tabs = [], defaultTabId, title, showTabs }: TabsProps) => (
   <StyledTabs defaultValue={defaultTabId}>
-    <TabsListContainer>
-      <TabsList aria-label={title}>
-        {tabs.map((tab) => (
-          <TabsTrigger value={tab.id} key={tab.id}>
-            {tab.title}
-          </TabsTrigger>
-        ))}
-      </TabsList>
-    </TabsListContainer>
+    {showTabs && (
+      <TabsListContainer>
+        <TabsList aria-label={title}>
+          {tabs.map((tab) => (
+            <TabsTrigger value={tab.id} key={tab.id}>
+              {tab.title}
+            </TabsTrigger>
+          ))}
+        </TabsList>
+      </TabsListContainer>
+    )}
     {tabs.map((tab) => (
       <TabsContent value={tab.id} key={tab.id}>
         {tab.content}

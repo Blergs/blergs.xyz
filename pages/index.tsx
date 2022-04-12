@@ -8,8 +8,11 @@ import Link from "next/link";
 import { styled } from "../theme/stitches.config";
 import Tabs from "../components/Tabs";
 import { BlergRarity } from "../types";
+import { useWallet } from "@web3-ui/core";
 
 const Home: NextPage = () => {
+  const { connected } = useWallet();
+
   return (
     <div className={styles.container}>
       <Head>
@@ -19,6 +22,7 @@ const Home: NextPage = () => {
       </Head>
 
       <Tabs
+        showTabs={connected}
         defaultTabId="allBlergs"
         title="Filter Blergs"
         tabs={[
