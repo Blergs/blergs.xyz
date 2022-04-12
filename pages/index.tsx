@@ -9,9 +9,28 @@ import { styled } from "../theme/stitches.config";
 import Tabs from "../components/Tabs";
 import { BlergRarity } from "../types";
 import { useWallet } from "@web3-ui/core";
+import { useMemo, useState } from "react";
+
+enum SortType {
+  RankAscending,
+  RankDescending,
+  NameAscending,
+  NameDescending,
+}
 
 const Home: NextPage = () => {
   const { connected } = useWallet();
+  const [sortType, setSortType] = useState<SortType>(SortType.RankAscending);
+
+  const allBlergs = useMemo(() => {
+    const ALL_BLERGS = RARITIES_DATA.slice(0, 10);
+    return sortTokens(ALL_BLERGS, sortType);
+  }, [sortType]);
+
+  const myBlergs = useMemo(() => {
+    const ALL_BLERGS = RARITIES_DATA.slice(0, 5);
+    return sortTokens(ALL_BLERGS, sortType);
+  }, [sortType]);
 
   return (
     <div className={styles.container}>
@@ -27,12 +46,12 @@ const Home: NextPage = () => {
         title="Filter Blergs"
         tabs={[
           {
-            content: <BlergsGrid blergs={RARITIES_DATA.slice(0, 5)} />,
+            content: <BlergsGrid blergs={allBlergs} />,
             id: "allBlergs",
             title: "All",
           },
           {
-            content: <BlergsGrid blergs={RARITIES_DATA.slice(0, 2)} />,
+            content: <BlergsGrid blergs={myBlergs} />,
             id: "myBlergs",
             title: "Mine",
           },
@@ -67,4 +86,35 @@ const BlergsGrid = ({ blergs }: BlergsGridProps) => {
       </Grid>
     </main>
   );
+};
+
+const sortTokens = (tokens: BlergRarity[], sortType: SortType) => {
+  switch (sortType) {
+    case SortType.RankAscending:
+      return tokens.sort((a, b) => a.rank - b.rank);
+    case SortType.RankDescending:
+      return tokens.sort((a, b) => b.rank - a.rank);
+    case SortType.NameAscending:
+      return tokens.sort((a, b) => {
+        if (a.tokenId > b.tokenId) {
+          return 1;
+        }
+        if (a.tokenId < b.tokenId) {
+          return -1;
+        }
+
+        return 0;
+      });
+    case SortType.NameDescending:
+      return tokens.sort((a, b) => {
+        if (a.tokenId > b.tokenId) {
+          return -1;
+        }
+        if (a.tokenId < b.tokenId) {
+          return 1;
+        }
+
+        return 0;
+      });
+  }
 };
