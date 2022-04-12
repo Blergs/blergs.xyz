@@ -177,7 +177,7 @@ const sortTokens = (tokens: BlergRarity[], sortType: SortType) => {
 const FilterContainer = styled("div", {
   position: "absolute",
   right: "40px",
-  top: 14,
+  top: 12,
   display: "none",
   "@bp2": {
     display: "block",
