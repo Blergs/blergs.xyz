@@ -9,9 +9,10 @@ import { styled } from "../theme/stitches.config";
 import Tabs from "../components/Tabs";
 import { BlergRarity } from "../types";
 import { useWallet } from "@web3-ui/core";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Select from "../components/Select";
 import ExternalLink from "../components/ExternalLink";
+import useMyBlergs from "../providers/useMyBlergs";
 
 enum SortType {
   RankAscending = "RankAscending",
@@ -21,8 +22,12 @@ enum SortType {
 }
 
 const Home: NextPage = () => {
-  const { connected } = useWallet();
+  const { connected, connection } = useWallet();
   const [sortType, setSortType] = useState<SortType>(SortType.RankAscending);
+  const { ownedTokenIDs } = useMyBlergs({
+    ownerAddress: connection.userAddress,
+  });
+  const [activeTab, setActiveTab] = useState("allBlergs");
 
   const allBlergs = useMemo(() => {
     const ALL_BLERGS = RARITIES_DATA.slice(0, 10);
@@ -30,9 +35,21 @@ const Home: NextPage = () => {
   }, [sortType]);
 
   const myBlergs = useMemo(() => {
-    const ALL_BLERGS = RARITIES_DATA.slice(0, 0);
-    return sortTokens(ALL_BLERGS, sortType);
-  }, [sortType]);
+    if (ownedTokenIDs && ownedTokenIDs.length > 0) {
+      const ALL_BLERGS = RARITIES_DATA.filter((blerg) =>
+        ownedTokenIDs.includes(blerg.tokenId)
+      );
+      return sortTokens(ALL_BLERGS, sortType);
+    }
+
+    return [];
+  }, [ownedTokenIDs, sortType]);
+
+  useEffect(() => {
+    if (!connected) {
+      setActiveTab("allBlergs");
+    }
+  }, [connected]);
 
   return (
     <div className={styles.container}>
@@ -74,6 +91,8 @@ const Home: NextPage = () => {
         />
       </FilterContainer>
       <Tabs
+        value={activeTab}
+        onValueChange={setActiveTab}
         showTabs={connected}
         defaultTabId="allBlergs"
         title="Filter Blergs"

@@ -78,10 +78,23 @@ interface TabsProps {
   defaultTabId: string;
   title: string;
   showTabs: boolean;
+  value: string;
+  onValueChange: (value: string) => void;
 }
 
-const Tabs = ({ tabs = [], defaultTabId, title, showTabs }: TabsProps) => (
-  <StyledTabs defaultValue={defaultTabId}>
+const Tabs = ({
+  tabs = [],
+  defaultTabId,
+  title,
+  showTabs,
+  onValueChange,
+  value,
+}: TabsProps) => (
+  <StyledTabs
+    defaultValue={defaultTabId}
+    value={value}
+    onValueChange={onValueChange}
+  >
     {showTabs ? (
       <TabsListContainer>
         <TabsList aria-label={title}>
