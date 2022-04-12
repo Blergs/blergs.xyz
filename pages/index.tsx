@@ -10,12 +10,14 @@ import Tabs from "../components/Tabs";
 import { BlergRarity } from "../types";
 import { useWallet } from "@web3-ui/core";
 import { useMemo, useState } from "react";
+import Select from "../components/Select";
+import { NodeNextRequest } from "next/dist/server/base-http";
 
 enum SortType {
-  RankAscending,
-  RankDescending,
-  NameAscending,
-  NameDescending,
+  RankAscending = "RankAscending",
+  RankDescending = "RankDescending",
+  NameAscending = "NameAscending",
+  NameDescending = "NameDescending",
 }
 
 const Home: NextPage = () => {
@@ -40,6 +42,37 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.png" />
       </Head>
 
+      <FilterContainer>
+        <Select
+          defaultValue={SortType.RankAscending.toString()}
+          onValueChange={(value) => {
+            setSortType(value as SortType);
+          }}
+          label="Sort by"
+          options={[
+            {
+              id: SortType.RankAscending.toString(),
+              label: "Rank 1 > 431",
+              value: SortType.RankAscending.toString(),
+            },
+            {
+              id: SortType.RankDescending.toString(),
+              label: "Rank 431 > 1",
+              value: SortType.RankDescending.toString(),
+            },
+            {
+              id: SortType.NameAscending.toString(),
+              label: "Name 1 > 431",
+              value: SortType.NameAscending.toString(),
+            },
+            {
+              id: SortType.NameDescending.toString(),
+              label: "Name 431 > 1",
+              value: SortType.NameDescending.toString(),
+            },
+          ]}
+        />
+      </FilterContainer>
       <Tabs
         showTabs={connected}
         defaultTabId="allBlergs"
@@ -118,3 +151,13 @@ const sortTokens = (tokens: BlergRarity[], sortType: SortType) => {
       });
   }
 };
+
+const FilterContainer = styled("div", {
+  position: "absolute",
+  right: "40px",
+  top: 14,
+  display: "none",
+  "@bp2": {
+    display: "block",
+  },
+});

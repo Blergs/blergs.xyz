@@ -59,6 +59,10 @@ const TabsListContainer = styled("div", {
   justifyContent: "center",
 });
 
+const Placeholder = styled("div", {
+  height: 56,
+});
+
 const TabsList = StyledList;
 const TabsTrigger = StyledTrigger;
 const TabsContent = StyledContent;
@@ -78,7 +82,7 @@ interface TabsProps {
 
 const Tabs = ({ tabs = [], defaultTabId, title, showTabs }: TabsProps) => (
   <StyledTabs defaultValue={defaultTabId}>
-    {showTabs && (
+    {showTabs ? (
       <TabsListContainer>
         <TabsList aria-label={title}>
           {tabs.map((tab) => (
@@ -88,6 +92,8 @@ const Tabs = ({ tabs = [], defaultTabId, title, showTabs }: TabsProps) => (
           ))}
         </TabsList>
       </TabsListContainer>
+    ) : (
+      <Placeholder />
     )}
     {tabs.map((tab) => (
       <TabsContent value={tab.id} key={tab.id}>
