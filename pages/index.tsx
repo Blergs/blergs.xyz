@@ -11,7 +11,7 @@ import { BlergRarity } from "../types";
 import { useWallet } from "@web3-ui/core";
 import { useMemo, useState } from "react";
 import Select from "../components/Select";
-import { NodeNextRequest } from "next/dist/server/base-http";
+import ExternalLink from "../components/ExternalLink";
 
 enum SortType {
   RankAscending = "RankAscending",
@@ -30,7 +30,7 @@ const Home: NextPage = () => {
   }, [sortType]);
 
   const myBlergs = useMemo(() => {
-    const ALL_BLERGS = RARITIES_DATA.slice(0, 5);
+    const ALL_BLERGS = RARITIES_DATA.slice(0, 0);
     return sortTokens(ALL_BLERGS, sortType);
   }, [sortType]);
 
@@ -84,7 +84,22 @@ const Home: NextPage = () => {
             title: "All",
           },
           {
-            content: <BlergsGrid blergs={myBlergs} />,
+            content: (
+              <BlergsGrid
+                blergs={myBlergs}
+                emptyMessage={
+                  <EmptyMessage>
+                    <h3>There are no blergs in your Wallet... yet</h3>
+                    <ExternalLink
+                      type="primary"
+                      href="https://opensea.io/collection/the-blerginning?search[sortAscending]=true&search[sortBy]=PRICE&search[toggles][0]=BUY_NOW"
+                    >
+                      Opensea
+                    </ExternalLink>
+                  </EmptyMessage>
+                }
+              />
+            ),
             id: "myBlergs",
             title: "Mine",
           },
@@ -103,11 +118,17 @@ const BlergLink = styled("a", {
 
 interface BlergsGridProps {
   blergs: BlergRarity[];
+  emptyMessage?: React.ReactNode;
 }
 
-const BlergsGrid = ({ blergs }: BlergsGridProps) => {
+const BlergsGrid = ({ blergs, emptyMessage }: BlergsGridProps) => {
   return (
-    <main className={styles.main}>
+    <main
+      className={styles.main}
+      style={{
+        backgroundColor: blergs.length === 0 ? "white" : undefined,
+      }}
+    >
       <Grid>
         {blergs.map((blerg) => (
           <Link key={blerg.tokenId} href={`/blerg/${blerg.tokenId}`} passHref>
@@ -117,6 +138,7 @@ const BlergsGrid = ({ blergs }: BlergsGridProps) => {
           </Link>
         ))}
       </Grid>
+      {blergs.length === 0 && emptyMessage}
     </main>
   );
 };
@@ -159,5 +181,18 @@ const FilterContainer = styled("div", {
   display: "none",
   "@bp2": {
     display: "block",
+  },
+});
+
+const EmptyMessage = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+  width: 264,
+  h3: {
+    fontSize: 20,
+    color: "$black",
+    marginBottom: 38,
+    marginTop: 100,
   },
 });

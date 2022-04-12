@@ -13,6 +13,7 @@ const StyledList = styled(TabsPrimitive.List, {
   display: "flex",
   borderBottom: `none`,
   width: "100%",
+  zIndex: 2,
   "@bp2": {
     width: "486px",
   },
@@ -36,7 +37,6 @@ const StyledTrigger = styled(TabsPrimitive.Trigger, {
   userSelect: "none",
   outline: "none",
   border: "8px solid $black",
-  borderBottom: "none",
   "&:first-child": { borderTopLeftRadius: BORDER_RADIUS, borderRight: 0 },
   "&:last-child": { borderTopRightRadius: BORDER_RADIUS },
   '&[data-state="active"]': {
