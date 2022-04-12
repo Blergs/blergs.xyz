@@ -30,7 +30,7 @@ const Home: NextPage = () => {
   const [activeTab, setActiveTab] = useState("allBlergs");
 
   const allBlergs = useMemo(() => {
-    const ALL_BLERGS = RARITIES_DATA.slice(0, 10);
+    const ALL_BLERGS = RARITIES_DATA;
     return sortTokens(ALL_BLERGS, sortType);
   }, [sortType]);
 
