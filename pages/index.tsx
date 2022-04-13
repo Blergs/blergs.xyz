@@ -170,21 +170,25 @@ const sortTokens = (tokens: BlergRarity[], sortType: SortType) => {
       return tokens.sort((a, b) => b.rank - a.rank);
     case SortType.NameAscending:
       return tokens.sort((a, b) => {
-        if (a.tokenId > b.tokenId) {
-          return 1;
-        }
-        if (a.tokenId < b.tokenId) {
+        const tokenIdA = parseInt(a.tokenId, 10);
+        const tokenIdB = parseInt(b.tokenId, 10);
+        if (tokenIdA < tokenIdB) {
           return -1;
+        }
+        if (tokenIdA > tokenIdB) {
+          return 1;
         }
 
         return 0;
       });
     case SortType.NameDescending:
       return tokens.sort((a, b) => {
-        if (a.tokenId > b.tokenId) {
+        const tokenIdA = parseInt(a.tokenId, 10);
+        const tokenIdB = parseInt(b.tokenId, 10);
+        if (tokenIdA > tokenIdB) {
           return -1;
         }
-        if (a.tokenId < b.tokenId) {
+        if (tokenIdA < tokenIdB) {
           return 1;
         }
 
