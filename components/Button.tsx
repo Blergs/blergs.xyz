@@ -7,7 +7,7 @@ const Button = styled("button", {
   fontSize: "20px",
   lineHeight: "28px",
   padding: "10px 20px",
-  border: "8px solid $black",
+  border: "4px solid $black",
   cursor: "pointer",
   fontFamily: "$header",
 });
