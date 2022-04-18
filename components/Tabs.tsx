@@ -36,7 +36,7 @@ const StyledTrigger = styled(TabsPrimitive.Trigger, {
   color: "$black",
   userSelect: "none",
   outline: "none",
-  border: "8px solid $black",
+  border: "4px solid $black",
   "&:first-child": { borderTopLeftRadius: BORDER_RADIUS, borderRight: 0 },
   "&:last-child": { borderTopRightRadius: BORDER_RADIUS },
   '&[data-state="active"]': {
