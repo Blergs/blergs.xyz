@@ -49,7 +49,7 @@ const TextContainer = styled("div", {
   transition: "opacity 0.2s ease-in, transform 0.2s ease-in",
   h2: {
     margin: 0,
-    marginBottom: "8px",
+    marginBottom: "4px",
     fontSize: "32px",
     lineHeight: "24px",
   },
