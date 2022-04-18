@@ -1,6 +1,6 @@
 .container {
   padding: 8px 0px;
-  background: black;
+  position: relative;
 }
 
 .main {
@@ -10,6 +10,10 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  background: black;
+  padding-top: 8px;
+  transform: translateY(-8px);
+  z-index: 0;
 }
 
 .footer {
