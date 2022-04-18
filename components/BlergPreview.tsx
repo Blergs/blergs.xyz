@@ -19,8 +19,6 @@ const BlergPreview = ({ blerg }: Props) => {
         alt=""
         width={425}
         height={425}
-        // Prioritize loading the first 50 since these will probably be above the fold.
-        priority={parseInt(blerg.tokenId, 10) < 50}
       />
     </Container>
   );
@@ -49,7 +47,7 @@ const TextContainer = styled("div", {
   transition: "opacity 0.2s ease-in, transform 0.2s ease-in",
   h2: {
     margin: 0,
-    marginBottom: "8px",
+    marginBottom: "4px",
     fontSize: "32px",
     lineHeight: "24px",
   },

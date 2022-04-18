@@ -156,7 +156,7 @@ const StartColumn = styled("div", {
 });
 
 const EndColumn = styled("div", {
-  padding: "40px 8px",
+  padding: "40px 4px",
   "> section": {
     width: "100%",
   },
@@ -194,7 +194,7 @@ const StartColumnContentContainer = styled("div", {
 const BlergImageContainer = styled("div", {
   height: 300,
   width: 300,
-  border: "8px solid $black",
+  border: "4px solid $black",
   borderRadius: 12,
   overflow: "hidden",
 
