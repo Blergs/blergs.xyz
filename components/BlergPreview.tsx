@@ -19,8 +19,6 @@ const BlergPreview = ({ blerg }: Props) => {
         alt=""
         width={425}
         height={425}
-        // Prioritize loading the first 50 since these will probably be above the fold.
-        priority={parseInt(blerg.tokenId, 10) < 50}
       />
     </Container>
   );
